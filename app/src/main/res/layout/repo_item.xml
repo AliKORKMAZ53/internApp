@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:background="#8B8991">
+
+    <TextView
+        android:id="@+id/repoTextView"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_weight="18"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#f6c745" />
+
+</LinearLayout>
