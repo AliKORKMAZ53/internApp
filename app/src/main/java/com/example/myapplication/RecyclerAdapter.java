@@ -18,7 +18,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RepoVi
     private List<Response> responses=new ArrayList<>();
     private Context context;
 
-    public RecyclerAdapter(Context context,List<Response> responses){
+    public RecyclerAdapter(Context context, List<Response> responses){
         this.context=context;
         this.responses=responses;
     }

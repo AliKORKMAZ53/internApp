@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.myapplication.model.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,13 +24,17 @@ public class Repository {
 
     Api client = RetrofitService.createService(Api.class);
 
+
     public MutableLiveData<List<Response>> getRepos(String username){
         MutableLiveData<List<Response>> repoData=new MutableLiveData<>();
         client.getRepoNames(username).enqueue(new Callback<List<Response>>() {
             @Override
             public void onResponse(Call<List<Response>> call, retrofit2.Response<List<Response>> response) {
                 if(response.isSuccessful()){
-                    repoData.setValue(response.body());
+                    Log.d("ARRIVALDATA:","CAME");
+                    List<Response> a=response.body();
+                    repoData.postValue(a);
+                    Log.d("ARRIVALDATA:","GONE "+a.isEmpty());
                 }
             }
 

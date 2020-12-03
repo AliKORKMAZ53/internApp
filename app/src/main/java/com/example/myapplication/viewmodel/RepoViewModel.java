@@ -20,6 +20,7 @@ public class RepoViewModel extends ViewModel {
         repository= Repository.getInstance();
         mutableLiveData= repository.getRepos("AliKORKMAZ53");
     }
+
     public LiveData<List<Response>> getAllRepoNames(){
         return mutableLiveData;
     }

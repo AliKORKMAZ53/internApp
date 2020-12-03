@@ -1,22 +1,26 @@
 package com.example.myapplication.network;
 
 import android.os.Environment;
+import android.os.SystemClock;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-    public static String API_BASE_URL = "https://https://api.github.com/users/";
+    public static String API_BASE_URL = "https://api.github.com/users/";
 
     static Gson gson=new GsonBuilder().serializeNulls().setDateFormat(DateFormat.LONG).create();
     //customizing GSON: JSON converter
@@ -27,15 +31,21 @@ public class RetrofitService {
     private static Retrofit retrofit=builder.build();
 
 
+
     private static HttpLoggingInterceptor loggingInterceptor=
             new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
-
+/*
+    public static Interceptor interceptor = chain -> {
+        SystemClock.sleep(500);
+        return chain.proceed(chain.request());
+    }; */
 
     private static OkHttpClient.Builder httpClientBuilder= new OkHttpClient.Builder()
             .connectTimeout(1, TimeUnit.MINUTES)
             .writeTimeout(30,TimeUnit.SECONDS)
-            .readTimeout(30,TimeUnit.SECONDS);
+            .readTimeout(30,TimeUnit.SECONDS)
+            ;
 
 
 

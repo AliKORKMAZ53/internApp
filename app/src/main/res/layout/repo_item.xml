@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_weight="18"
         android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#f6c745" />
 
 </LinearLayout>

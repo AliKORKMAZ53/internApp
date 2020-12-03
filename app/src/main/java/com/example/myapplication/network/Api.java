@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface Api {
-@GET("/{username}/repos")
+@GET("/users/{username}/repos")
     Call<List<Response>> getRepoNames(@Path("username")String name);
 
 }
