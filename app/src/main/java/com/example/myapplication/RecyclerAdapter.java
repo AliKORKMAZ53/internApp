@@ -18,11 +18,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RepoVi
     private List<Response> responses=new ArrayList<>();
     private Context context;
 
-    public RecyclerAdapter(Context context, List<Response> responses){
+    public RecyclerAdapter(Context context){
         this.context=context;
-        this.responses=responses;
     }
 
+    public List<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
 
     @NonNull
     @Override
@@ -34,7 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RepoVi
 
     @Override
     public void onBindViewHolder(@NonNull RepoViewHolder holder, int position) {
-        holder.tv.setText(responses.get(position).toString());
+        holder.tv.setText(responses.get(position).getName());
     }
 
 

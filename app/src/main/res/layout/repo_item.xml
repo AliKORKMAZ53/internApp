@@ -9,6 +9,8 @@
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_weight="18"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#f6c745" />

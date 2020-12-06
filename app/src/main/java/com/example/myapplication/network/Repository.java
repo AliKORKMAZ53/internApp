@@ -13,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Repository {
-    private static Repository repository;
+  /*  private static Repository repository;
 
     public static Repository getInstance(){
         if(repository==null){
@@ -21,11 +21,11 @@ public class Repository {
         }
         return repository;
     }
-
+*/
     Api client = RetrofitService.createService(Api.class);
 
 
-    public MutableLiveData<List<Response>> getRepos(String username){
+    public MutableLiveData<List<Response>> getReposFromRepository(String username){
         MutableLiveData<List<Response>> repoData=new MutableLiveData<>();
         client.getRepoNames(username).enqueue(new Callback<List<Response>>() {
             @Override
@@ -34,13 +34,13 @@ public class Repository {
                     Log.d("ARRIVALDATA:","CAME");
                     List<Response> a=response.body();
                     repoData.postValue(a);
-                    Log.d("ARRIVALDATA:","GONE "+a.isEmpty());
+                    Log.d("ARRIVALDATA:","GONE - IsEmpty:"+a.isEmpty());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Response>> call, Throwable t) {
-                    repoData.setValue(null);
+                    repoData.postValue(null);
 
             }
         });
