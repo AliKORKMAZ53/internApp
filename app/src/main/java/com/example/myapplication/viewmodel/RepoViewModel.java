@@ -12,14 +12,18 @@ import com.example.myapplication.network.Repository;
 import java.util.List;
 
 public class RepoViewModel extends ViewModel {
+    Repository repository;
+    public RepoViewModel() {
+        repository=new Repository();
+    }
+
     private MutableLiveData<List<Response>> mutableLiveData=new MutableLiveData<>();
-    private Repository repository=new Repository();
+
 
     public void initandupdate(String username){
 
-
        // repository= Repository.getInstance();
-        mutableLiveData= repository.getReposFromRepository(username);
+        repository.getReposFromRepository(username,mutableLiveData);
 
     }
 

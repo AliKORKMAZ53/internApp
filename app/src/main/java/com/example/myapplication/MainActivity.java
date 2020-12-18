@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         editText=findViewById(R.id.editTextSearch);
         recyclerView=findViewById(R.id.recyclerView);
 
-
-
+        //repoViewModel=new RepoViewModel();
         repoViewModel=new ViewModelProvider(this).get(RepoViewModel.class);
         repoViewModel.getAllRepoNames().observe(this, responses -> {
                     Log.d("ARRIVAL",responses.get(0).getName());//test

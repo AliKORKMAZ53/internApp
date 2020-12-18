@@ -25,25 +25,25 @@ public class Repository {
     Api client = RetrofitService.createService(Api.class);
 
 
-    public MutableLiveData<List<Response>> getReposFromRepository(String username){
-        MutableLiveData<List<Response>> repoData=new MutableLiveData<>();
+    public void getReposFromRepository(String username, MutableLiveData<List<Response>> mutable){
+
         client.getRepoNames(username).enqueue(new Callback<List<Response>>() {
             @Override
             public void onResponse(Call<List<Response>> call, retrofit2.Response<List<Response>> response) {
                 if(response.isSuccessful()){
                     Log.d("ARRIVALDATA:","CAME");
                     List<Response> a=response.body();
-                    repoData.postValue(a);
+                    mutable.postValue(a);
                     Log.d("ARRIVALDATA:","GONE - IsEmpty:"+a.isEmpty());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Response>> call, Throwable t) {
-                    repoData.postValue(null);
+                    mutable.postValue(null);
 
             }
         });
-        return repoData;
+
     }
 }
