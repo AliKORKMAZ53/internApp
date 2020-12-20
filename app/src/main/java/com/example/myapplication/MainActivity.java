@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.myapplication.model.Response;
 import com.example.myapplication.viewmodel.RepoViewModel;
@@ -37,10 +38,15 @@ public class MainActivity extends AppCompatActivity {
         //repoViewModel=new RepoViewModel();
         repoViewModel=new ViewModelProvider(this).get(RepoViewModel.class);
         repoViewModel.getAllRepoNames().observe(this, responses -> {
-                    Log.d("ARRIVAL",responses.get(0).getName());//test
-                    responseList=responses;
-                    recyclerAdapter.setResponses(responseList);
-                    recyclerAdapter.notifyDataSetChanged();
+
+                    if(responses==null){
+                        Toast.makeText(MainActivity.this,"There is no repo in this name",Toast.LENGTH_SHORT).show();
+                        recyclerAdapter.setResponses(responseList);
+                    }else{
+                        recyclerAdapter.setResponses(responses);
+
+                    }
+            recyclerAdapter.notifyDataSetChanged();
 
                 }
         );

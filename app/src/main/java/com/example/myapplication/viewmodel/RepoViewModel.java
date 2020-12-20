@@ -23,6 +23,7 @@ public class RepoViewModel extends ViewModel {
     public void initandupdate(String username){
 
        // repository= Repository.getInstance();
+
         repository.getReposFromRepository(username,mutableLiveData);
 
     }

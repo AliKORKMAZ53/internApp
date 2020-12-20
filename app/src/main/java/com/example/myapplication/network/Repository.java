@@ -27,20 +27,31 @@ public class Repository {
 
     public void getReposFromRepository(String username, MutableLiveData<List<Response>> mutable){
 
+
         client.getRepoNames(username).enqueue(new Callback<List<Response>>() {
+
             @Override
             public void onResponse(Call<List<Response>> call, retrofit2.Response<List<Response>> response) {
+                List<Response> a=response.body();
                 if(response.isSuccessful()){
                     Log.d("ARRIVALDATA:","CAME");
-                    List<Response> a=response.body();
-                    mutable.postValue(a);
+                    //List<Response> a=response.body();
                     Log.d("ARRIVALDATA:","GONE - IsEmpty:"+a.isEmpty());
+                    mutable.postValue(a);
+                }else{
+                    mutable.postValue(null);
+
+                    Log.d("ARRIVALDATA:","GONE - in else"+response.code());
+
                 }
+
+
             }
 
             @Override
             public void onFailure(Call<List<Response>> call, Throwable t) {
                     mutable.postValue(null);
+                Log.d("ARRIVALDATA:","onFAILURE");
 
             }
         });
