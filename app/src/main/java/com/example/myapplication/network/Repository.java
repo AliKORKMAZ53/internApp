@@ -1,10 +1,16 @@
 package com.example.myapplication.network;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.room.Room;
 
 import com.example.myapplication.model.Response;
+import com.example.myapplication.roomDB.AppDatabase;
+import com.example.myapplication.roomDB.RepoDao;
+import com.example.myapplication.roomDB.RepoDbTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +19,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class Repository {
-  /*  private static Repository repository;
 
-    public static Repository getInstance(){
-        if(repository==null){
-            repository=new Repository();
-        }
-        return repository;
-    }
-*/
+
+    //API WORKS
     Api client = RetrofitService.createService(Api.class);
 
 
@@ -35,13 +35,12 @@ public class Repository {
                 List<Response> a=response.body();
                 if(response.isSuccessful()){
                     Log.d("ARRIVALDATA:","CAME");
-                    //List<Response> a=response.body();
-                    Log.d("ARRIVALDATA:","GONE - IsEmpty:"+a.isEmpty());
                     mutable.postValue(a);
+                    Log.d("ARRIVALDATA:","GONE - IsEmpty:"+a.isEmpty());
                 }else{
                     mutable.postValue(null);
 
-                    Log.d("ARRIVALDATA:","GONE - in else"+response.code());
+                    Log.d("ARRIVALDATA:","GONE - error code:"+response.code());
 
                 }
 

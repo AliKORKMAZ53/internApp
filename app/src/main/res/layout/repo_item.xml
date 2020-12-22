@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/repoTextView"
-        android:layout_width="100dp"
+        android:layout_width="164dp"
         android:layout_height="match_parent"
         android:layout_weight="18"
         android:paddingLeft="20dp"
@@ -14,5 +14,12 @@
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#f6c745" />
+
+    <Button
+        android:id="@+id/favButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:text="Add Fav" />
 
 </LinearLayout>

@@ -1,7 +1,17 @@
 package com.example.myapplication.model;
 
-public class Owner {
+public class owner {
+    String login;
     String avatar_url;
+
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getAvatar_url() {
         return avatar_url;

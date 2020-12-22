@@ -2,13 +2,13 @@ package com.example.myapplication.model;
 
 public class Response {
     String name;
-    Owner owner;
+    com.example.myapplication.model.owner owner;
 
-    public Owner getOwner() {
+    public com.example.myapplication.model.owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
+    public void setOwner(com.example.myapplication.model.owner owner) {
         this.owner = owner;
     }
 
