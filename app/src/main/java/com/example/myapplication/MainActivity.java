@@ -5,15 +5,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.model.Response;
 import com.example.myapplication.viewmodel.RepoViewModel;
-import com.example.myapplication.viewmodel.dbViewModel;
+import com.example.myapplication.viewmodel.DbViewModel;
 
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
     public RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private RepoViewModel repoViewModel;
-    dbViewModel dbViewModel;
+    DbViewModel dbViewModel;
     EditText editText;
     Button button;
     List<Response> nullResponseList =new ArrayList<>();
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
         button=findViewById(R.id.searchButton);
         editText=findViewById(R.id.editTextSearch);
         recyclerView=findViewById(R.id.recyclerView);
-        dbViewModel=new dbViewModel(getApplication());
+        dbViewModel=new DbViewModel(getApplication());
 
         repoViewModel=new ViewModelProvider(this).get(RepoViewModel.class);
         repoViewModel.getAllRepoNames().observe(this, responses -> {
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(recyclerAdapter);
        }else{
+
            recyclerAdapter.notifyDataSetChanged();
         }
     }
@@ -81,5 +84,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
         Log.d("MainActivity callback",actualResponseList.get(position).getOwner().getLogin());
         dbViewModel.addFavourite(actualResponseList.get(position).getOwner().getLogin(),actualResponseList.get(position).getName());
         Log.d("MainActivity callback",actualResponseList.get(position).getName());
+    }
+
+    public void passToFavActivity(View view) {
+        Intent i=new Intent(this,FavsActivity.class);
+        startActivity(i);
     }
 }

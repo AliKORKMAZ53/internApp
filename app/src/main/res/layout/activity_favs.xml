@@ -6,14 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".FavsActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/FavrecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/backtomainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/backtomainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="201dp"
-        android:layout_marginEnd="114dp"
-        android:onClick="tikla"
-        android:text="Button"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="18dp"
+        android:text="Back"
+        android:onClick="passToMainActivity"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/FavrecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

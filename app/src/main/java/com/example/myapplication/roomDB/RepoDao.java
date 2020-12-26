@@ -1,5 +1,6 @@
 package com.example.myapplication.roomDB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,7 +13,7 @@ import java.util.List;
 public interface RepoDao {
 
     @Query("SELECT * FROM RepoDbTable")
-    List<RepoDbTable> getAll();
+    LiveData<List<RepoDbTable>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAll(RepoDbTable... repoDbTable);
