@@ -20,11 +20,12 @@ public class DbRepository {
         allTables=repoDao.getAll();
     }
 
-    public void insertData(String owner, String repo){
+    public void insertData(String owner, String repo, String url){
 AppDatabase.databaseWriteExecutor.execute(()->{
     RepoDbTable repoDbTable=new RepoDbTable();
     repoDbTable.ownerName=owner;
     repoDbTable.repoName=repo;
+    repoDbTable.url=url;
     repoDao.insertAll(repoDbTable);
 });
 

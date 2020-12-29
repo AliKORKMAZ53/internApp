@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.roomDB.RepoDbTable;
 
 import java.util.ArrayList;
@@ -39,7 +41,19 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
     public void onBindViewHolder(@NonNull FavRecyclerAdapter.RepoViewHolder holder, int position) {
         holder.tvOwner.setText(tables.get(position).ownerName);
         holder.tvRepo.setText(tables.get(position).repoName);
+        if(tables.get(position).url!=null){
+            Glide.with(context)
+                    .load(tables.get(position).url)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(holder.img);
+
+        }else{
+            Glide.clear(holder.img);
+            holder.img.setImageDrawable(null);
+        }
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -50,12 +64,14 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
         TextView tvOwner;
         TextView tvRepo;
         Button unFav;
+        ImageView img;
         ClickListener clickListener;
         public RepoViewHolder(@NonNull View itemView, ClickListener clickListener) {
             super(itemView);
             tvOwner=itemView.findViewById(R.id.OwnertextView);
             tvRepo=itemView.findViewById(R.id.RepoFavtextView);
             unFav=itemView.findViewById(R.id.unFavButton);
+            img=itemView.findViewById(R.id.imageView);
             this.clickListener=clickListener;
             unFav.setOnClickListener(this);
         }

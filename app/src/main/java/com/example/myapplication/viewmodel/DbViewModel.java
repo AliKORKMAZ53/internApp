@@ -20,9 +20,9 @@ public class DbViewModel extends AndroidViewModel {
         allTables=dbRepository.getItemsFromDatabase();
     }
 
-    public static void addFavourite(String owner, String repoName){
+    public static void addFavourite(String owner, String repoName,String url){
 
-        dbRepository.insertData(owner,repoName);
+        dbRepository.insertData(owner,repoName,url);
 
     }
     public LiveData<List<RepoDbTable>> getFavourites(){

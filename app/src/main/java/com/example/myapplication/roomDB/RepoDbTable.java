@@ -15,6 +15,9 @@ public class RepoDbTable {
     @ColumnInfo(name = "repo_name")
     public String repoName;
 
+    @ColumnInfo(name = "avt_url")
+    public String url;
+
     
 }
 
