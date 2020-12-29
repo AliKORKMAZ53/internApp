@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,9 +55,20 @@ public class FavsActivity extends AppCompatActivity implements FavRecyclerAdapte
 
     @Override
     public void onClickUnFavBut(int position) {
-        dbViewModel.deleteOneFav(actualTableList.get(position).repoName);
+        AlertDialog.Builder builder = new AlertDialog.Builder(FavsActivity.this);
+        builder.setTitle("Warning");
+        builder.setMessage("Are you sure?");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dbViewModel.deleteOneFav(actualTableList.get(position).repoName);
+            }
+        });
+        builder.setNegativeButton("Cancel",null);
+        builder.show();
 
     }
+
     private void initRecyclerView(){
         if(favRecyclerAdapter==null){
             favRecyclerAdapter=new FavRecyclerAdapter(FavsActivity.this,this::onClickUnFavBut);
@@ -72,4 +86,5 @@ public class FavsActivity extends AppCompatActivity implements FavRecyclerAdapte
         Intent i=new Intent(this,MainActivity.class);
         startActivity(i);
     }
+
 }

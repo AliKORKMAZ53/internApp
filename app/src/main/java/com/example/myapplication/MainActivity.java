@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
     public void onClickFavBut(int position) {
         Log.d("MainActivity callback",actualResponseList.get(position).getOwner().getLogin());
         dbViewModel.addFavourite(actualResponseList.get(position).getOwner().getLogin(),actualResponseList.get(position).getName(),actualResponseList.get(position).getOwner().getAvatar_url());
-        Log.d("MainActivity callback",actualResponseList.get(position).getName());
+        Toast.makeText(this,actualResponseList.get(position).getName()+" is added",Toast.LENGTH_SHORT).show();
+
     }
 
     public void passToFavActivity(View view) {
