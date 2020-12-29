@@ -33,4 +33,10 @@ AppDatabase.databaseWriteExecutor.execute(()->{
     public LiveData<List<RepoDbTable>> getItemsFromDatabase(){
         return allTables;
     }
+
+    public void deleteData(String repo){
+        AppDatabase.databaseWriteExecutor.execute(()->{
+            repoDao.deleteOne(repo);
+        });
+    }
 }

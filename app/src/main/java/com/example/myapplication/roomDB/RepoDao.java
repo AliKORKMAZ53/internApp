@@ -18,6 +18,6 @@ public interface RepoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAll(RepoDbTable... repoDbTable);
 
-    @Delete
-    void deleteOne(RepoDbTable repoDbTable);
+    @Query("DELETE FROM RepoDbTable WHERE repo_name=:repo")
+    void deleteOne(String repo);
 }

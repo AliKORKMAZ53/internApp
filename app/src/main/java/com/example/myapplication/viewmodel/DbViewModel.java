@@ -29,4 +29,8 @@ public class DbViewModel extends AndroidViewModel {
         return allTables;
     }
 
+    public void deleteOneFav(String repo){
+        dbRepository.deleteData(repo);
+    }
+
 }

@@ -52,7 +52,8 @@ public class FavsActivity extends AppCompatActivity implements FavRecyclerAdapte
 
     @Override
     public void onClickUnFavBut(int position) {
-        Log.d("unfavbut",position+" clicked");
+        dbViewModel.deleteOneFav(actualTableList.get(position).repoName);
+
     }
     private void initRecyclerView(){
         if(favRecyclerAdapter==null){

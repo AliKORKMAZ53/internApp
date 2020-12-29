@@ -79,6 +79,7 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
         @Override
         public void onClick(View v) {
         clickListener.onClickUnFavBut(getAdapterPosition());
+
         }
     }
     public interface ClickListener{
