@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
     DbViewModel dbViewModel;
     EditText editText;
     Button button;
-    List<Response> nullResponseList =new ArrayList<>();
+    //List<Response> nullResponseList =new ArrayList<>();
     List<Response> actualResponseList =new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +45,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
 
                     if(responses==null){
                         Toast.makeText(MainActivity.this,"There is no repo in this name",Toast.LENGTH_SHORT).show();
-                        recyclerAdapter.setResponses(nullResponseList);
+                        //recyclerAdapter.setResponses(nullResponseList);
                     }else{
-
                         actualResponseList=responses;
                         recyclerAdapter.setResponses(actualResponseList);
-
                     }
             recyclerAdapter.notifyDataSetChanged();
 
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
     private void initRecyclerView() {
        if(recyclerAdapter==null){
             recyclerAdapter=new RecyclerAdapter(MainActivity.this, this::onClickFavBut);
-            recyclerAdapter.setResponses(nullResponseList);//for nullablity
+            recyclerAdapter.setResponses(actualResponseList);//for nullablity at beginning
             RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(recyclerAdapter);
@@ -81,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
 
     @Override
     public void onClickFavBut(int position) {
-        Log.d("MainActivity callback",actualResponseList.get(position).getOwner().getLogin());
+
         dbViewModel.addFavourite(actualResponseList.get(position).getOwner().getLogin(),actualResponseList.get(position).getName(),actualResponseList.get(position).getOwner().getAvatar_url());
-        Toast.makeText(this,actualResponseList.get(position).getName()+" is added",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Operation successfull",Toast.LENGTH_SHORT).show();
 
     }
 
