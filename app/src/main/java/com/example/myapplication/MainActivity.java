@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.myapplication.model.Response;
 import com.example.myapplication.viewmodel.RepoViewModel;
 import com.example.myapplication.viewmodel.DbViewModel;
+import com.example.myapplication.viewmodel.ViewmodelFactory;
 
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
     DbViewModel dbViewModel;
     EditText editText;
     Button button;
-    //List<Response> nullResponseList =new ArrayList<>();
+    ViewmodelFactory viewmodelFactory;
     List<Response> actualResponseList =new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
         button=findViewById(R.id.searchButton);
         editText=findViewById(R.id.editTextSearch);
         recyclerView=findViewById(R.id.recyclerView);
-        dbViewModel=new DbViewModel(getApplication());
+        viewmodelFactory=new ViewmodelFactory(getApplication());
 
-        repoViewModel=new ViewModelProvider(this).get(RepoViewModel.class);
+        dbViewModel=viewmodelFactory.DBcreate();
+        repoViewModel=viewmodelFactory.create(new RepoViewModel().getClass());
+
         repoViewModel.getAllRepoNames().observe(this, responses -> {
 
                     if(responses==null){
