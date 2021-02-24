@@ -22,19 +22,19 @@ public class RepoViewModel extends ViewModel {
 
     }
 
-    private MutableLiveData<List<Response>> mutableLiveData=new MutableLiveData<>();
-
+    private MutableLiveData<List<Response>> positiveLiveData =new MutableLiveData<>();
+    private MutableLiveData<String> errorLiveData=new MutableLiveData<>();
 
     public void initandupdate(String username){
-
-        remoteRepository.getReposFromRepository(username,mutableLiveData);
-
+        remoteRepository.getReposFromRepository(username, positiveLiveData, errorLiveData);
     }
 
 
     public LiveData<List<Response>> getAllRepoNames(){
-
-        return mutableLiveData;
+        return positiveLiveData;
+    }
+    public LiveData<String> getError(){
+        return errorLiveData;
     }
 
 

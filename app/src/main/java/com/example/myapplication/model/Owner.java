@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class owner {
+public class Owner {
     String login;
     String avatar_url;
 

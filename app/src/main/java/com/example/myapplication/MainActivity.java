@@ -47,17 +47,23 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
 
         repoViewModel.getAllRepoNames().observe(this, responses -> {
 
-                    if(responses==null){
-                        Toast.makeText(MainActivity.this,"There is no repo in this name",Toast.LENGTH_SHORT).show();
+                 //   if(responses==null){
+                 //       Toast.makeText(MainActivity.this,"There is no repo in this name",Toast.LENGTH_SHORT).show();
                         //recyclerAdapter.setResponses(nullResponseList);
-                    }else{
+                  //  }else{
                         actualResponseList=responses;
                         recyclerAdapter.setResponses(actualResponseList);
-                    }
+                 //   }
             recyclerAdapter.notifyDataSetChanged();
 
                 }
         );
+        repoViewModel.getError().observe(this,errorBody->{
+            Toast.makeText(MainActivity.this,
+                    errorBody
+                    ,Toast.LENGTH_SHORT).show();
+
+        });
 
         button.setOnClickListener(v -> {
             repoViewModel.initandupdate(editText.getText().toString());
