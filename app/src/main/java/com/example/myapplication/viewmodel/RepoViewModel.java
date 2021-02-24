@@ -1,26 +1,24 @@
 package com.example.myapplication.viewmodel;
 
-import android.app.Activity;
-import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.MainActivity;
+
 import com.example.myapplication.model.Response;
-import com.example.myapplication.network.Repository;
-import com.example.myapplication.roomDB.DbRepository;
+import com.example.myapplication.network.RemoteRepository;
+
 
 import java.util.List;
 
 public class RepoViewModel extends ViewModel {
-    Repository repository;
+    RemoteRepository remoteRepository;
 
 
-    public RepoViewModel() {
-        repository=new Repository();
+    public RepoViewModel(RemoteRepository remoteRepository) {
+
+        this.remoteRepository = remoteRepository;
 
     }
 
@@ -29,10 +27,9 @@ public class RepoViewModel extends ViewModel {
 
     public void initandupdate(String username){
 
-        repository.getReposFromRepository(username,mutableLiveData);
+        remoteRepository.getReposFromRepository(username,mutableLiveData);
 
     }
-
 
 
     public LiveData<List<Response>> getAllRepoNames(){

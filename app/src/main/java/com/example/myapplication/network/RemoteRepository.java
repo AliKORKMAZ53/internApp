@@ -18,7 +18,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class Repository {
+public class RemoteRepository {
 
 
     //API WORKS

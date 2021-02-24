@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,13 +9,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.myapplication.roomDB.DbRepository;
 import com.example.myapplication.roomDB.RepoDbTable;
 import com.example.myapplication.viewmodel.DbViewModel;
+import com.example.myapplication.viewmodel.ViewmodelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,7 @@ public class FavsActivity extends AppCompatActivity implements FavRecyclerAdapte
     public RecyclerView recyclerView;
     public FavRecyclerAdapter favRecyclerAdapter;
     DbViewModel dbViewModel;
+    ViewmodelFactory viewmodelFactory;
 
     List<RepoDbTable> nullTableList =new ArrayList<>();
     List<RepoDbTable> actualTableList =new ArrayList<>();
@@ -33,8 +32,9 @@ public class FavsActivity extends AppCompatActivity implements FavRecyclerAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
         recyclerView=findViewById(R.id.FavrecyclerView);
-        dbViewModel=new DbViewModel(getApplication());
-        dbViewModel=new ViewModelProvider(this).get(DbViewModel.class);
+        viewmodelFactory=new ViewmodelFactory(getApplication());
+        dbViewModel=viewmodelFactory.create(1);
+
         dbViewModel.getFavourites().observe(this,repoDbTables->{
             if(repoDbTables==null){
                 Toast.makeText(FavsActivity.this,"There is no repo in this name",Toast.LENGTH_SHORT).show();

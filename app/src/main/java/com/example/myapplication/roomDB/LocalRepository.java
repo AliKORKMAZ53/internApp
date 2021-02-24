@@ -9,12 +9,12 @@ import androidx.room.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DbRepository {
+public class LocalRepository {
 
     //DB WORKS
     private RepoDao repoDao;
     private LiveData<List<RepoDbTable>> allTables;
-    public DbRepository(Application application) {
+    public LocalRepository(Application application) {
         AppDatabase db=AppDatabase.getDatabase(application);
         repoDao=db.repoDao();
         allTables=repoDao.getAll();

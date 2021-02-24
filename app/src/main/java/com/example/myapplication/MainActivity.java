@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.C
         button=findViewById(R.id.searchButton);
         editText=findViewById(R.id.editTextSearch);
         recyclerView=findViewById(R.id.recyclerView);
-        viewmodelFactory=new ViewmodelFactory(getApplication());
+        viewmodelFactory=new ViewmodelFactory(this.getApplication());
 
-        dbViewModel=viewmodelFactory.DBcreate();
-        repoViewModel=viewmodelFactory.create(new RepoViewModel().getClass());
+        //for repo 0 for db 1
+        dbViewModel=viewmodelFactory.create(1);
+        repoViewModel=viewmodelFactory.create(0);
 
         repoViewModel.getAllRepoNames().observe(this, responses -> {
 
